@@ -1,3 +1,4 @@
 [submodule "vundle"]
 	path = vundle
-	url = git@github.com:seanerchen/vundle.git
+	url = git@github.com:oohcoder/vundle.git
+

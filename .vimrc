@@ -4,38 +4,35 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-"  " required! 
-Bundle 'gmarik/vundle'
-
-Bundle 'https://github.com/scrooloose/nerdtree.git'
-Bundle 'https://github.com/scrooloose/nerdcommenter.git'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'plasticboy/vim-markdown'
+"let Vundle manage Vundle
+" required! 
+"Bundle 'gmarik/vundle'
+"Bundle 'git@github.com:msanders/cocoa.vim.git'
+"Bundle 'https://github.com/scrooloose/nerdtree.git'
+"Bundle 'https://github.com/scrooloose/nerdcommenter.git'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'plasticboy/vim-markdown'
 "Bundle 'fholgado/minibufexpl.vim'
 "Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-pandoc/vim-pandoc'
-Bundle 'https://github.com/bling/vim-airline'
-"Bundle 'https://github.com/shad/vim-markdown-preview.git'
-Bundle 'https://github.com/uguu-org/vim-matrix-screensaver.git'
-Bundle 'https://github.com/aklt/plantuml-syntax.git'
-Bundle 'Lokaltog/powerline-fonts'
-
-"Bundle 'AutoComplPop'
-Bundle 'ctags.vim'
+"Bundle 'vim-pandoc/vim-pandoc'
+"Bundle 'https://github.com/bling/vim-airline'
+"Bundle 'https://github.com/aklt/plantuml-syntax.git'
+"Bundle 'Lokaltog/powerline-fonts'
+"Bundle 'ctags.vim'
 Bundle 'DoxygenToolkit.vim'
-Bundle 'JSON.vim'
-Bundle 'Markdown'
-Bundle 'pydoc.vim'
-Bundle 'pyflakes.vim'
-Bundle 'python.vim'
-Bundle 'surround.vim'
-Bundle 'Tagbar'
-Bundle 'UltiSnips'
-Bundle 'vim-indent-guides'
-Bundle 'xml.vim'
-Bundle 'rizzatti/funcoo.vim'
-Bundle 'rizzatti/dash.vim'
+"Bundle 'JSON.vim'
+"Bundle 'Markdown'
+"Bundle 'pydoc.vim'
+"Bundle 'pyflakes.vim'
+"Bundle 'python.vim'
+"Bundle 'surround.vim'
+"Bundle 'Tagbar'
+"Bundle 'UltiSnips'
+"Bundle 'vim-indent-guides'
+"Bundle 'xml.vim'
+"Bundle 'rizzatti/funcoo.vim'
+"Bundle 'rizzatti/dash.vim'
+Bundle 'godlygeek/tabular.git'
 
 filetype plugin indent on     " required!
 
@@ -185,8 +182,8 @@ set ignorecase
 let g:DoxygenToolkit_briefTag_pre="@Synopsis  " 
 let g:DoxygenToolkit_paramTag_pre="@Param " 
 let g:DoxygenToolkit_returnTag="@Returns   " 
-let g:DoxygenToolkit_blockHeader="--------------------------------------------------------------------------" 
-let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------------" 
+let g:DoxygenToolkit_blockHeader="" 
+let g:DoxygenToolkit_blockFooter="" 
 let g:DoxygenToolkit_authorName="chenxiaonan" 
 let g:DoxygenToolkit_licenseTag="seanchen"  
 
@@ -233,7 +230,7 @@ let g:Powerline_stl_path_style = 'full'
 "let g:Powerline_cache_file='~/.vim/bundle/powerline/Powerline.cache'
 nnoremap <F5> :w<CR> :silent make<CR>
 inoremap <F5> <Esc>:w<CR>:silent make<CR>
-vnoremap <F5> :<C-U>:w<CR>:silent make<CR
+vnoremap <F5> :<C-U>:w<CR>:silent make<CR>
 
 let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_initial_foldlevel=1
@@ -254,3 +251,24 @@ endfunction
 "代码注释的插件
 let mapleader = ','
 "let NERDShutUp=1
+"
+"tabular
+if exists(":Tabularize")
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a: :Tabularize /:\zs<CR>
+    vmap <Leader>a: :Tabularize /:\zs<CR>
+endif
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+    let p = '^\s*|\s.*\s|\s*$'
+    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+        Tabularize/|/l1
+        normal! 0
+        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+    endif
+endfunction
