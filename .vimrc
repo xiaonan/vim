@@ -8,7 +8,7 @@ call vundle#rc()
 " required! 
 "Bundle 'gmarik/vundle'
 "Bundle 'git@github.com:msanders/cocoa.vim.git'
-"Bundle 'https://github.com/scrooloose/nerdtree.git'
+Bundle 'https://github.com/scrooloose/nerdtree.git'
 "Bundle 'https://github.com/scrooloose/nerdcommenter.git'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'plasticboy/vim-markdown'
@@ -26,13 +26,15 @@ Bundle 'DoxygenToolkit.vim'
 "Bundle 'pyflakes.vim'
 "Bundle 'python.vim'
 "Bundle 'surround.vim'
-"Bundle 'Tagbar'
+Bundle 'Tagbar'
 "Bundle 'UltiSnips'
 "Bundle 'vim-indent-guides'
 "Bundle 'xml.vim'
 "Bundle 'rizzatti/funcoo.vim'
 "Bundle 'rizzatti/dash.vim'
 Bundle 'godlygeek/tabular.git'
+Bundle 'rizzatti/dash.vim'
+"Bundle 'Valloric/YouCompleteMe'
 
 filetype plugin indent on     " required!
 
@@ -272,3 +274,6 @@ function! s:align()
         call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
     endif
 endfunction
+"php 函数补全
+filetype plugin on                                             
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
