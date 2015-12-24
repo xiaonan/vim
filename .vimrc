@@ -1,65 +1,22 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-"let Vundle manage Vundle
-" required! 
-"Bundle 'gmarik/vundle'
-"Bundle 'git@github.com:msanders/cocoa.vim.git'
 Bundle 'https://github.com/scrooloose/nerdtree.git'
-"Bundle 'https://github.com/scrooloose/nerdcommenter.git'
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'plasticboy/vim-markdown'
-"Bundle 'fholgado/minibufexpl.vim'
-"Bundle 'Lokaltog/vim-powerline'
-"Bundle 'vim-pandoc/vim-pandoc'
-"Bundle 'https://github.com/bling/vim-airline'
-"Bundle 'https://github.com/aklt/plantuml-syntax.git'
-"Bundle 'Lokaltog/powerline-fonts'
-"Bundle 'ctags.vim'
-Bundle 'DoxygenToolkit.vim'
-"Bundle 'JSON.vim'
-"Bundle 'Markdown'
-"Bundle 'pydoc.vim'
-"Bundle 'pyflakes.vim'
-"Bundle 'python.vim'
-"Bundle 'surround.vim'
-Bundle 'Tagbar'
-"Bundle 'UltiSnips'
-"Bundle 'vim-indent-guides'
-"Bundle 'xml.vim'
-"Bundle 'rizzatti/funcoo.vim'
-"Bundle 'rizzatti/dash.vim'
-Bundle 'godlygeek/tabular.git'
-Bundle 'rizzatti/dash.vim'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'junegunn/vim-easy-align'
+Bundle 'vim-scripts/DoxygenToolkit.vim'
+Bundle 'vim-scripts/VOoM'
+Bundle 'majutsushi/tagbar'
 
 filetype plugin indent on     " required!
+let mapleader = ','
+set nobackup
 
 "设置编码
 set encoding=utf-8
-"显示行号
-set nu 
-"set cursorline "高亮显示光标所在行
-"set cursorcolumn"高亮显示光标所在行
 
-if(has("win32") || has("win95") || has("win64") || has("win16")) "判定当前操作系统类型
-    let g:iswindows=1
-else
-    let g:iswindows=0
-endif
-if(g:iswindows==1) "允许鼠标的使用
-    "防止linux终端下无法拷贝
-    if has('mouse')
-        set mouse=a
-    endif
-    au GUIEnter * simalt ~x
-endif
-"字体的设置
-""set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI "记住空格用下划线代替哦
-""set gfw=幼圆:h10:cGB2312
 set bg=dark
 colorscheme desert
 
@@ -100,9 +57,6 @@ set hlsearch "高亮显示结果
 set incsearch "在输入要搜索的文字时，vim会实时匹配
 set backspace=indent,eol,start whichwrap+=<,>,[,] "允许退格键的使用
 
-"tagbar面向对象的taglist
-map <F4> :TagbarToggle<CR> 
-
 
 "代码折叠
 set foldmethod=indent "折叠方式
@@ -112,54 +66,7 @@ set foldlevel=1
 "highlight Folded guibg=grey guifg=blue
 "highlight FoldColumn guibg=darkgrey guifg=white
 
-"文件浏览的配置
-"let g:winManagerWindowLayout='FileExplorer|TagList'
-"nmap wm :WMToggle<cr>
 
-"文件浏览器NERD_tree配置
-"map <C-n> :NERDTreeToggle<CR>
-map ne :NERDTreeToggle<CR>
-" loaded_nerd_tree 不使用NerdTree脚本"
-let NERDChristmasTree=0 "让Tree把自己给装饰得多姿多彩漂亮点
-let NERDTreeAutoCenter=0 "控制当光标移动超过一定距离时，是否自动将焦点调整到屏中心
-let NERDTreeAutoCenterThreshold=8 "与NERDTreeAutoCenter配合使用
-" NERDTreeCaseSensitiveSort 排序时是否大小写敏感
-let NERDTreeChDirMode=2 "确定是否改变Vim的CWD
-let NERDTreeHighlightCursorline=1 "是否高亮显示光标所在行
-" NERDTreeHijackNetrw 是否使用:edit命令时打开第二NerdTree
-" NERDTreeIgnore 默认的“无视”文
-" NERDTreeBookmarksFile 指定书签文件
-" NERDTreeMouseMode 指定鼠标模式（1.双击打开；2.单目录双文件；3.单击打开）
-" NERDTreeQuitOnOpen 打开文件后是否关闭NerdTree窗口
-" NERDTreeShowBookmarks 是否默认显示书签列表
-" NERDTreeShowFiles 是否默认显示文件
-let NERDTreeShowHidden=0 "是否默认显示隐藏文件
-let NERDTreeShowLineNumbers=0 "是否默认显示行号
-" NERDTreeSortOrder 排序规则
-" NERDTreeStatusline 窗口状态栏
-" NERDTreeWinPos 窗口位置（'left' or 'right'）
-" NERDTreeWinSize 窗口宽
-let NERDTreeShowFiles=1
-let NERDTreeWinPos='left'
-"let NERDTreeWinSize=38
-" autocmd VimEnter * NERDTree
-" 启动Vim时自动打开nerdtree
-let NERDTreeShowBookmarks=1
-"一直显示书签
-let NERDTreeChDirMode=2
-"打开书签时，自动将Vim的pwd设为打开的目录，如果你的项目有tags文件，你会发现这个命令很有帮助
-
-"使用cscope
-:set cscopequickfix=s-,c-,d-,i-,t-,e-
-
-"noremap <C-J>     <C-W>j
-"noremap <C-K>     <C-W>k
-"noremap <C-H>     <C-W>h
-"noremap <C-L>     <C-W>l
-
-"minibuffer
-"noremap <C-L>   :MBEbn<CR>
-"noremap <C-H> :MBEbp<CR>
 
 "代码自动补全
 filetype plugin indent on
@@ -180,14 +87,12 @@ set noerrorbells
 set ignorecase 
 
 "Doxygen风格注释
-"let g:DoxygenToolkit_commentType = "PHP"
-let g:DoxygenToolkit_briefTag_pre="@Synopsis  " 
-let g:DoxygenToolkit_paramTag_pre="@Param " 
-let g:DoxygenToolkit_returnTag="@Returns   " 
-let g:DoxygenToolkit_blockHeader="" 
-let g:DoxygenToolkit_blockFooter="" 
-let g:DoxygenToolkit_authorName="chenxiaonan" 
-let g:DoxygenToolkit_licenseTag="seanchen"  
+let g:DoxygenToolkit_dateTag="@date "
+let g:DoxygenToolkit_briefTag_pre="@desc " 
+let g:DoxygenToolkit_paramTag_pre="@param " 
+let g:DoxygenToolkit_authorTag="@author "
+let g:DoxygenToolkit_authorName="陈肖楠 (chenxiaonan01@baidu.com)" 
+let g:DoxygenToolkit_returnTag="@return   " 
 
 "indent guides 函数对齐线
 let g:indent_guides_guide_size=1
@@ -249,31 +154,22 @@ endfunction
 :nmap <silent> <F5> :call ToHtml()<CR>
 :nmap <silent> <F6> :call ToPdf()<CR>
 
-"对NERD_commenter的设置
-"代码注释的插件
-let mapleader = ','
-"let NERDShutUp=1
-"
-"tabular
-if exists(":Tabularize")
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>a: :Tabularize /:\zs<CR>
-    vmap <Leader>a: :Tabularize /:\zs<CR>
-endif
 
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
-function! s:align()
-    let p = '^\s*|\s.*\s|\s*$'
-    if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-        let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-        let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-        Tabularize/|/l1
-        normal! 0
-        call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-    endif
-endfunction
 "php 函数补全
 filetype plugin on                                             
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+
+vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+    let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+
+"tagbar
+nmap tb :TagbarToggle<CR>
+
+"nerdtree
+nmap ne :NERDTreeToggle<CR>
