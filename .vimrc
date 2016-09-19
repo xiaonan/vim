@@ -91,7 +91,7 @@ let g:DoxygenToolkit_dateTag="@date "
 let g:DoxygenToolkit_briefTag_pre="@desc " 
 let g:DoxygenToolkit_paramTag_pre="@param " 
 let g:DoxygenToolkit_authorTag="@author "
-let g:DoxygenToolkit_authorName="陈肖楠 (chenxiaonan01@baidu.com)" 
+let g:DoxygenToolkit_authorName="xxx (xxx@baidu.com)" 
 let g:DoxygenToolkit_returnTag="@return   " 
 
 "indent guides 函数对齐线
