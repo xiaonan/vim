@@ -7,6 +7,6 @@ vim
 >
 1. git clone git地址 vim 
 2. 建立home目录软链接到vim目录 .vimrc-> ..vim/.vimrc, .vim->..vim/.vim
-3. 现在vundle git clone http://github.com/gmarik/vundle.git ~/.vim/vundle.git
+3. 现在下载vundle: git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 5. 打开vi,运行BundleInstall命令，安装插件
 6. 尽情享受vim带来的快乐吧~
