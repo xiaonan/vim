@@ -1,16 +1,22 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'nsf/gocode', {'rtp': 'vim/'}
 
 Bundle 'https://github.com/scrooloose/nerdtree.git'
 Bundle 'junegunn/vim-easy-align'
 Bundle 'vim-scripts/DoxygenToolkit.vim'
 Bundle 'vim-scripts/VOoM'
 Bundle 'majutsushi/tagbar'
+Bundle 'google/vim-ft-go'
 
-filetype plugin indent on     " required!
+call vundle#end()            " required
+filetype plugin indent on    " required
+
 let mapleader = ','
 set nobackup
 
